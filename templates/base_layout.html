@@ -5,20 +5,41 @@
     <title>{% block title %}Default title{% endblock title %}</title>
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
 </head>
 <header>
-  <div class="logo">
-    <a href="{% url 'homepage' %}">
-      <img src="{% static 'logo1.png' %}" alt="logo">
-    </a>
-  </div>
-  <nav>
-    <ul class="nav-menu">
-      <li><a href="{% url 'homepage' %}">Home</a></li>
-      <li><a href="{% url 'about' %}">About</a></li>
-    </ul>
-  </nav>
-  <div class="header-button"><button class="button_primary">List</button></div>
+    <div class="logo">
+        <a href="{% url 'homepage' %}">
+          <img src="{% static 'logo1.png' %}" alt="logo">
+        </a>
+    </div>
+
+    <nav>
+        <ul class="nav-menu">
+          <li><a href="{% url 'homepage' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+        </ul>
+    </nav>
+
+     <div class="header-button">
+          <a href="{% url 'homepage' %}">
+              <button class="button_primary">List</button>
+          </a>
+     </div>
+
+    <div class="auth-block">
+      {% if user.is_authenticated %}
+          <span>Привет, {{ user.username }}!</span>
+          <form action="{% url 'accounts:logout' %}" method="post" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit">Logout</button>
+          </form>
+      {% else %}
+          <a href="{% url 'accounts:login' %}">
+              <button class="button_primary">Login</button>
+          </a>
+      {% endif %}
+    </div>
 
 </header>
 {% block content %}{% endblock content %}

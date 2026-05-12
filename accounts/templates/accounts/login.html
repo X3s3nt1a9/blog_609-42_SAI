@@ -4,15 +4,17 @@
 <div class="form-container">
     <h1>Вход в систему</h1>
     
-    <form method="post">
+    <form method="post" action="{% url 'accounts:login' %}">
         {% csrf_token %}
-        {{ form}}
-        
+        {{ form }}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
         <button type="submit" class="btn-submit">Войти</button>
     </form>
     
     <p style="text-align: center; margin-top: 20px; font-size: 14px;">
-        Нет аккаунта? <a href="{% url 'signup' %}">Зарегистрироваться</a>
+        Нет аккаунта? <a href="{% url 'accounts:signup' %}">Зарегистрироваться</a>
     </p>
 </div>
 {% endblock %}

@@ -1,44 +1,36 @@
 {% extends "base_layout.html" %}
-{% block title %}Article List{% endblock title %}
-{% block content %}
-    <main>
-    <nav>
-    <nav>
-            <ul>
-                {% if user.is_authenticated %}
-                <li>
-                    <span>Привет, {{ user.username }}!</span>
-                    <form class="logout" action="{% url 'logout' %}" method="post" style="display: inline">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
-                </li>
-                {% else %}
-                <li>
-                    <a href="{% url 'login' %}"><button>Login</button></a>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-        <h1>Article List</h1>
-        <div class="articles">
-            {% for element in articles %}
-                <div class="article__item">
-                    <h2>
-                        <a href="{% url 'article_detail' slug=element.slug %}">
-                            {{ element.title }}
-                        </a>
-                    </h2>
-                    <p>
-    <!--                    {{ element.body }}-->
-                        {{ element.snippet }}
-                    </p>
-                    <time>
-                        {{ element.date }}
-                    </time>
-                </div>
-            {% endfor %}
-        </div>
+{% block title %}Article List{% endblock %}
 
-    </main>
-{% endblock content %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Article List</h1>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'articles:create' %}" class="btn-primary create-btn">
+            Create article
+        </a>
+    {% endif %}
+
+    <div class="articles-grid">
+        {% for element in articles %}
+            <div class="article-card">
+                <h2 class="article-title">
+                    {{ element.title }}
+                </h2>
+
+                <p class="article-snippet">
+                    {{ element.snippet }}
+                </p>
+
+                <p class="article-date">
+                    {{ element.date }}
+                </p>
+
+                <a href="{% url 'articles:article_detail' slug=element.slug %}" class="btn-outline">
+                    Read more
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
