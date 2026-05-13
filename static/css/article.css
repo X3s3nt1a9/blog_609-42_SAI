@@ -1,11 +1,9 @@
-/* Общий контейнер */
 .container {
     max-width: 1100px;
     margin: 60px auto;
     padding: 0 20px;
 }
 
-/* Заголовок */
 .page-title {
     font-size: 42px;
     font-weight: 600;
@@ -13,15 +11,15 @@
     color: #2c2c2c;
 }
 
-/* Сетка карточек */
+
 .articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
 }
 
-/* Карточка статьи */
-.article-card {
+
+.article-card-list {
     background: #f8f9fb;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
@@ -29,63 +27,71 @@
     transition: 0.3s ease;
 }
 
-.article-card:hover {
+.article-card-list:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-/* Заголовок статьи */
-.article-title {
+.article-title-list {
     font-size: 22px;
     margin-bottom: 10px;
-    color: #333;
 }
 
-/* Текст */
 .article-snippet {
     color: #555;
     margin-bottom: 15px;
 }
 
-/* Дата */
 .article-date {
     color: #777;
     font-size: 14px;
     margin-bottom: 20px;
 }
 
-/* Кнопка primary */
-.btn-primary {
-    display: inline-block;
-    padding: 10px 18px;
-    background: #2f80ed;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: 0.2s ease;
+.article-detail-card {
+    max-width: 800px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.btn-primary:hover {
-    background: #1c5ec9;
+.article-detail-card h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
 }
 
-/* Кнопка outline */
-.btn-outline {
-    display: inline-block;
-    padding: 8px 16px;
-    border: 2px solid #2f80ed;
-    color: #2f80ed;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: 0.2s ease;
+.article-detail-card p {
+    line-height: 1.8;
+    margin-bottom: 20px;
 }
 
-.btn-outline:hover {
-    background: #2f80ed;
-    color: white;
+.article-detail-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 25px 0;
 }
 
-/* Кнопка создания */
-.create-btn {
-    margin-bottom: 35px;
+@media (max-width: 768px) {
+
+    .container {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+
+    .page-title {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .article-detail-card {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+
+    .article-detail-card h1 {
+        font-size: 24px;
+    }
 }
+

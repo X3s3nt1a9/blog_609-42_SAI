@@ -6,15 +6,17 @@
     <h1 class="page-title">Article List</h1>
 
     {% if user.is_authenticated %}
-        <a href="{% url 'articles:create' %}" class="btn-primary create-btn">
+    <div class="page-actions">
+        <a href="{% url 'articles:create' %}" class="btn btn-primary create-btn">
             Create article
         </a>
+    </div>
     {% endif %}
 
     <div class="articles-grid">
         {% for element in articles %}
-            <div class="article-card">
-                <h2 class="article-title">
+            <div class="article-card-list">
+                <h2 class="article-title-list">
                     {{ element.title }}
                 </h2>
 
@@ -26,7 +28,7 @@
                     {{ element.date }}
                 </p>
 
-                <a href="{% url 'articles:article_detail' slug=element.slug %}" class="btn-outline">
+                <a href="{% url 'articles:article_detail' slug=element.slug %}" class="btn btn-outline">
                     Read more
                 </a>
             </div>
